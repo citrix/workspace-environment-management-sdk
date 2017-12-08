@@ -45,7 +45,7 @@ Gets the current infrastructure service configuration.
 
 ######  code
 
-```
+```powershell
     Get-WemInfrastructureServiceConfiguration
 ```
 
@@ -61,7 +61,7 @@ Gets the current infrastructure service configuration.
 
 ######  code
 
-```
+```powershell
     Get-WemInfrastructureServiceConfiguration –InfrastructureServer “[Server]”
 ```
 
@@ -75,7 +75,7 @@ Gets the current infrastructure service configuration.
 
 ######  code
 
-```
+```powershell
     $passwd = ConvertTo-SecureString "[Password]" -AsPlainText -Force; 
     $cred = New-Object System.Management.Automation.PSCredential ("[Domain\UserName]", $passwd)
     Get-WemInfrastructureServiceConfiguration –InfrastructureServer “[Server]” –InfrastructureServiceAccountCredentials $cred
@@ -110,7 +110,7 @@ Set-WemInfrastructureServiceConfiguration
 
 ######  code
 
-```
+```powershell
     Set-WemInfrastructureServiceConfiguration -DatabaseName "WEM_DB";
 ```
 
@@ -124,7 +124,7 @@ Set-WemInfrastructureServiceConfiguration
 
 ######  code
 
-```
+```powershell
     $Enable = [Norskale.Utilities.Common.SwitchState]::Enable;
     Set-WemInfrastructureServiceConfiguration -DatabaseName "WEM_DB" -MonitoringPort 8084 -DebugMode $Enable;
 ```
@@ -139,7 +139,7 @@ Set-WemInfrastructureServiceConfiguration
 
 ######  code
 
-```
+```powershell
     $Enable = [Norskale.Utilities.Common.SwitchState]::Enable;
     Set-WemInfrastructureServiceConfiguration -InfrastructureServer "[Server]" -DatabaseName "WEM_DB" -MonitoringPort 8084 -DebugMode $Enable;
 ```
@@ -154,7 +154,7 @@ Set-WemInfrastructureServiceConfiguration
 
 ######  code
 
-```
+```powershell
     $passwd = ConvertTo-SecureString "[Password]" -AsPlainText -Force; 
     $cred = New-Object System.Management.Automation.PSCredential("[Domain]\[UserName]", $passwd);
     Set-WemInfrastructureServiceConfiguration -InfrastructureServer "[Server]" -InfrastructureServiceAccountCredential $cred -DatabaseName "WEM_DB" -MonitoringPort 8084;
@@ -170,7 +170,7 @@ Set-WemInfrastructureServiceConfiguration
 
 ######  code
 
-```
+```powershell
     $Enable = [Norskale.Utilities.Common.SwitchState]::Enable;
     $Disable = [Norskale.Utilities.Common.SwitchState]::Disable;
     $config = New-Object Citrix.WEM.SDK.Configuration.InfrastructureService.SDKInfrastructureServiceConfiguration
