@@ -1,5 +1,5 @@
-site_name: Workspace Environment Management SDK Documentation
-site_description: Workspace Environment Management SDK Reference
+site_name: Workspace Environment Management SDK v4.5 Documentation
+site_description: Workspace Environment Management SDK v4.5 Documentation
 theme_dir: citrix-sdk
 markdown_extensions:
   - admonition
