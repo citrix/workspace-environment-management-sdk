@@ -1,0 +1,18 @@
+site_name: Workspace Environment Management SDK Documentation
+site_description: Workspace Environment Management SDK Reference
+theme_dir: citrix-sdk
+markdown_extensions:
+  - admonition
+  - codehilite(guess_lang=false)
+  - toc(permalink=true)
+  - footnotes
+  - meta
+
+pages:
+- Workspace Environment Management SDK:
+    - Overview: index.md
+    - Understanding the admin model: understanding-the-sdk.md
+    - Getting started: getting-started-guide.md
+- Workspace Environment Management SDK PowerShell Modules:
+    - WEM.database.configuration: wem-posh-modules/configuration-database.md
+    - WEM.infrastructure.service.configuration: wem-posh-modules/configuration-infrastructure-service.md
