@@ -1,7 +1,7 @@
 # Project information
-site_name: Workspace Environment Management SDK v4.7 Documentation
+site_name: Citrix Workspace Environment Management SDK v4.7 Documentation
 site_title: Developer Docs
-site_description: Workspace Environment Management SDK v4.7 Documentation
+site_description: Citrix Workspace Environment Management SDK v4.7 Documentation
 
 # Copyright
 copyright: 'Copyright &copy; 1999-2019 Citrix Systems, Inc. All rights reserved. '
@@ -56,6 +56,8 @@ markdown_extensions:
 
 # Page tree
 nav:
+- Versions:
+    - latest: https://developer-docs.citrix.com/projects/workspace-environment-management-sdk/en/latest/ 
 - Workspace Environment Management SDK:
     - Overview: index.md
     - Understanding the admin model: understanding-the-sdk.md
