@@ -1,17 +1,8 @@
-# Citrix.WEM.SDK.Configuration.Database
+# Citrix.WEM.SDK.Configuration.Database #
 
 #### Property Commandlets.BaseWemDatabaseCommand`1.SqlServerCredential
 
 PSCredential for connecting to the SQL instance for database creation. Leave empty to use Windows Authentication for current user.
-
-
-
-
-
----
-#### Property Commandlets.BaseWemDatabaseCommand`1.WindowsAccount
-
-Windows account granted access to WEM database.
 
 
 
@@ -47,13 +38,11 @@ Debug mode displays extra exception information. Specify 'None' to leave the cur
 ---
 ## Type Commandlets.NewWemDatabase
 
-Creates a WEM database.
+Create a WEM database.
 
-The New-WemDatabase cmdlet creates one Workspace Environment Management (WEM) database. The database is created on the SQL server.
+The New-WemDatabase cmdlet creates one Workspace Environment Management (WEM) database. The database is created on the SQL Server.
 
-##### Example: Create a database instance on the remote SQL DatabaseServerInstance (10.10.10.10). It uses SQL DatabaseServerInstance authentication for the initialization connection: 
-
-
+##### Example: 
 
 ######  code
 
@@ -61,17 +50,18 @@ The New-WemDatabase cmdlet creates one Workspace Environment Management (WEM) da
     $passwd = ConvertTo-SecureString "[Password]" -AsPlainText -Force
     $sqlServerCred = New-Object System.Management.Automation.PSCredential("sa", $passwd);
     $DBname = "WEM_DB";
-    $fileFolder = "C:\Program Files\Microsoft SQL DatabaseServerInstance\MSSQL11.MSSQLSERVER\MSSQL\DATA\";
-    New-WemDatabase -DatabaseServerInstance "10.10.10.10" -DatabaseName $DBname -DataFilePath($fileFolder+$DBname+"_Data.mdf") -LogFilePath($fileFolder+$DBname+"_Log.ldf") -DefaultAdministratorsGroup "[Domain]\[GroupName]" -SqlServerCredential $sqlServerCred
+    New-WemDatabase -DatabaseServerInstance "10.10.10.10" -DatabaseName $DBname -DefaultAdministratorsGroup "[Domain]\[GroupName]" -SqlServerCredential $sqlServerCred
 ```
 
+Create a database instance on the remote SQL Server (10.10.10.10) by using SQL Server authentication.
 
 
 
 
-##### Example: Create a database instance on the remote SQL DatabaseServerInstance(10.10.10.10). It uses Windows authentication for the initialization connection: 
 
 
+
+##### Example: 
 
 ######  code
 
@@ -81,13 +71,15 @@ The New-WemDatabase cmdlet creates one Workspace Environment Management (WEM) da
     New-WemDatabase -DatabaseServerInstance "[Server\Instance]" -DatabaseName $DBname -DataFilePath($fileFolder+$DBname+"_Data.mdf") -LogFilePath($fileFolder+$DBname+"_Log.ldf") -DefaultAdministratorsGroup "[Domain]\[GroupName]"
 ```
 
+Create a database instance on the remote SQL Server (10.10.10.10) by usingWindows authentication.
 
 
 
 
-##### Example: Create a database instance on the remote SQL DatabaseServerInstance(10.10.10.10). It uses Windows authentication for the initialization connection with adding extra database user via "WindowsAccount" attribute: 
 
 
+
+##### Example: 
 
 ######  code
 
@@ -97,13 +89,15 @@ The New-WemDatabase cmdlet creates one Workspace Environment Management (WEM) da
     New-WemDatabase -DatabaseServerInstance "[Server\Instance]" -DatabaseName $DBname -DataFilePath($fileFolder+$DBname+"_Data.mdf") -LogFilePath($fileFolder+$DBname+"_Log.ldf") -DefaultAdministratorsGroup "[Domain]\[GroupName]" -WindowsAccount "[Domain]\[UserName]
 ```
 
+Create a database instance on the remote SQL Server (10.10.10.10) by using Windows authentication. You can add extra database users by using the "WindowsAccount" attribute.
 
 
 
 
-##### Example: Creating new database instance on the remote SQL DatabaseServerInstance(10.10.10.10). It uses single configuration object for connecting to the server and configuring database: 
 
 
+
+##### Example: 
 
 ######  code
 
@@ -120,6 +114,10 @@ The New-WemDatabase cmdlet creates one Workspace Environment Management (WEM) da
     New-WemDatabase -Configuration $cfg;
 ```
 
+Create a new database instance on the remote SQL Server (10.10.10.10) by using a single configuration object to connect to the server and to configure the database.
+
+
+
 
 
 
@@ -131,9 +129,18 @@ Update-WemDatabase
 
 
 ---
+#### Property Commandlets.NewWemDatabase.WindowsAccount
+
+Windows account granted access to WEM database.
+
+
+
+
+
+---
 #### Property Commandlets.NewWemDatabase.DataFilePath
 
-Path to the .mdf file location on the SQL Server. You must provide a valid filepath, otherwise the cmdlet will fail. No default value is assumed.
+Path to the .mdf file location on the SQL Server. Leave empty to auto-populate the Data file field with the correct path of the SQL being used. If auto-population fails, the path of the SQL Server 2008 R2 is used by default.
 
 
 
@@ -142,7 +149,7 @@ Path to the .mdf file location on the SQL Server. You must provide a valid filep
 ---
 #### Property Commandlets.NewWemDatabase.LogFilePath
 
-Path to the .ldf file location on the SQL Server. You must provide a valid filepath, otherwise the cmdlet will fail. No default value is assumed.
+Path to the .ldf file location on the SQL Server. Leave empty to auto-populate the Log file field with the correct path of the SQL being used. If auto-population fails, the path of the SQL Server 2008 R2 is used by default.
 
 
 
@@ -185,29 +192,112 @@ Configuration set to save settings in.
 
 
 ---
-## Type Commandlets.UpdateWemDatabase
+## Type Commandlets.NewWemDatabaseOnCloud
 
-Updates an existing WEM database.
+Create a WEM database on Cloud.
 
-The Update-WemDatabase cmdlet updates an existing Workspace Environment Management (WEM) database instance on the SQL server.
+The New-WemDatabaseOnCloud cmdlet creates one Workspace Environment Management (WEM) database. The database is created on the SQL server.
 
-##### Example: Update an existing database to the latest version. Uses Windows authentication for the initialization connection: 
-
-
+##### Example: 
 
 ######  code
 
 ```
-    Update-WemDatabase -DatabaseServerInstance "NK_SQL" -DatabaseName "WEM_DB"
+    $passwd = ConvertTo-SecureString "[Password]" -AsPlainText -Force
+    $sqlServerCred = New-Object System.Management.Automation.PSCredential("sa", $passwd);
+    $DBname = "WEM_DB";
+    $elasticPool = "elasticPoolName";
+    New-WemDatabase -DatabaseServerInstance "10.111.12.145" -DatabaseName $DBname -SqlServerCredential $sqlServerCred -ElasticPool $elasticPool
 ```
 
+Create a new database instance on the remote SQL Server (10.111.12.145) by using SQL Server authentication.
 
 
 
 
-##### Example: Update an existing database to the latest version. Uses SQL Server authentication for the initialization connection: 
 
 
+
+##### Example: 
+
+######  code
+
+```
+    $elasticPool = "elasticPoolName";
+    $DBname = "WEMDB_1_Obj";    
+    $sqlServerCred = New-Object System.Management.Automation.PSCredential("name", $passwd);
+    $cfg = New-Object Citrix.WEM.SDK.Configuration.Database.SDKNewDatabaseConfigurationOnCloud;
+    $cfg.DatabaseServerInstance = "[Server\Instance]";
+    $cfg.SqlServerCredential = $$sqlServerCred;
+    $cfg.DatabaseName = $DBname;   
+    $cfg.ElasticPool = $elasticPool;
+    
+    New-WemDatabaseOnCloud -Configuration $cfg;
+```
+
+Create a new database instance on the remote SQL Server (10.111.12.145) by using a single configuration object to connect to the server and to configure the database.
+
+
+
+
+
+
+
+
+
+
+
+---
+#### Property Commandlets.NewWemDatabaseOnCloud.ElasticPool
+
+Elastic Pool of the WEM database to create.
+
+
+
+
+
+---
+#### Property Commandlets.NewWemDatabaseOnCloud.VuemUserSqlPassword
+
+Specific password for the WEM vuemUser SQL user account. Leave empty to create a default password.
+
+
+
+
+
+---
+#### Property Commandlets.NewWemDatabaseOnCloud.Configuration
+
+Configuration set save settings in.
+
+
+
+
+
+---
+## Type Commandlets.UpdateWemDatabase
+
+Update an existing WEM database.
+
+The Update-WemDatabase cmdlet updates an existing Workspace Environment Management (WEM) database instance on the SQL server.
+
+##### Example: 
+
+######  code
+
+```
+Update-WemDatabase -DatabaseServerInstance "NK_SQL" -DatabaseName "WEM_DB"
+```
+
+Update an existing database to the latest version by using Windows authentication.
+
+
+
+
+
+
+
+##### Example: 
 
 ######  code
 
@@ -217,13 +307,15 @@ The Update-WemDatabase cmdlet updates an existing Workspace Environment Manageme
     Update-WemDatabase -DatabaseServerInstance "NK_SQL" -DatabaseName "WEM_DB" -SqlServerCredential $sqlServerCred;
 ```
 
+Update an existing database to the latest version by using SQL Server authentication.
 
 
 
 
-##### Example: Update an existing database to the latest version. Uses SQL Server authentication for the initialization connection and adds extra database user via "WindowsAccount" attribute: 
 
 
+
+##### Example: 
 
 ######  code
 
@@ -233,13 +325,15 @@ The Update-WemDatabase cmdlet updates an existing Workspace Environment Manageme
     Update-WemDatabase -DatabaseServerInstance "NK_SQL" -DatabaseName "WEM_DB" -SqlServerCredential $sqlServerCred -WindowsAccount "[Domain]\[UserName]";
 ```
 
+Update an existing database to the latest version by using SQL Server authentication. You can add extra database users by using the "WindowsAccount" attribute.
 
 
 
 
-##### Example: Update an existing database instance on the remote SQL Server (10.10.10.10). Uses a single configuration object for connecting to the server and for configuring the database: 
 
 
+
+##### Example: 
 
 ######  code
 
@@ -251,11 +345,24 @@ The Update-WemDatabase cmdlet updates an existing Workspace Environment Manageme
     Update-WemDatabase -Configuration $cfg_obj;
 ```
 
+Update an existing database instance on the remote SQL Server (10.10.10.10) by using a single configuration object to connect to the server and to configure the database.
+
+
+
 
 
 
 
 New-WemDatabase
+
+
+
+
+
+---
+#### Property Commandlets.UpdateWemDatabase.WindowsAccount
+
+Windows account granted access to WEM database.
 
 
 
@@ -285,13 +392,6 @@ Configuration set.
 
 
 ---
-#### Property SDKDatabaseConfiguration.WindowsAccount
-
- Windows account granted access to WEM database. 
-
-
-
----
 #### Property SDKDatabaseConfiguration.DatabaseServerInstance
 
  SQL Server on which the database will be hosted (serveraddress,port\instancename). 
@@ -313,16 +413,23 @@ Configuration set.
 
 
 ---
+#### Property SDKNewDatabaseConfiguration.WindowsAccount
+
+ Windows account granted access to WEM database. 
+
+
+
+---
 #### Property SDKNewDatabaseConfiguration.DataFilePath
 
- Path to the .mdf file location on the SQL Server. You must provide a valid filepath, otherwise the cmdlet will fail. No default value is assumed. 
+ Path to the .mdf file location on the SQL Server. Leave empty to auto-populate the Data file field with the correct path of the SQL being used. If auto-population fails, the path of the SQL Server 2008 R2 is used by default. 
 
 
 
 ---
 #### Property SDKNewDatabaseConfiguration.LogFilePath
 
- Path to the .ldf file location on the SQL Server. You must provide a valid filepath, otherwise the cmdlet will fail. No default value is assumed. 
+ Path to the .ldf file location on the SQL Server. Leave empty to auto-populate the Log file field with the correct path of the SQL being used. If auto-population fails, the path of the SQL Server 2008 R2 is used by default. 
 
 
 
@@ -344,6 +451,41 @@ Configuration set.
 #### Property SDKNewDatabaseConfiguration.CommandTimeout
 
  Timeout period for connection attempts to the WEM database. After this time an error message is displayed. Leave empty to use default timeout of 300 seconds. 
+
+
+
+---
+## Type SDKNewDatabaseConfigurationOnCloud
+
+ Configuration new database class 
+
+
+
+---
+#### Property SDKNewDatabaseConfigurationOnCloud.VuemUserSqlPassword
+
+ Specific password for the WEM vuemUser SQL user account. Leave empty to create a default password. 
+
+
+
+---
+#### Property SDKNewDatabaseConfigurationOnCloud.ElasticPool
+
+ ELASTIC POOL of the WEM database to join. 
+
+
+
+---
+## Type SDKUpdateDatabaseConfiguration
+
+ Configuration update database class 
+
+
+
+---
+#### Property SDKUpdateDatabaseConfiguration.WindowsAccount
+
+ Windows account granted access to WEM database. 
 
 
 

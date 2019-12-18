@@ -1,7 +1,7 @@
 # Project information
-site_name: Workspace Environment Management SDK v4.7 Documentation
+site_name: Citrix Workspace Environment Management 1912 SDK Documentation
 site_title: Developer Docs
-site_description: Workspace Environment Management SDK v4.7 Documentation
+site_description: Citrix Workspace Environment Management 1912 SDK Documentation
 
 # Copyright
 copyright: 'Copyright &copy; 1999-2019 Citrix Systems, Inc. All rights reserved. '
@@ -56,11 +56,14 @@ markdown_extensions:
 
 # Page tree
 nav:
-- Workspace Environment Management SDK:
+- Versions:
+    - Citrix Workspace Environment Management 4.7: https://developer-docs.citrix.com/projects/workspace-environment-management-sdk/en-us/4.7/
+- Citrix Workspace Environment Management SDK:
     - Overview: index.md
     - Understanding the admin model: understanding-the-sdk.md
     - Getting started: getting-started-guide.md
 - Workspace Environment Management SDK PowerShell Modules:
     - WEM.database.configuration: wem-posh-modules/configuration-database.md
     - WEM.infrastructure.service.configuration: wem-posh-modules/configuration-infrastructure-service.md
+    - WEM.admin.client.configuration: wem-posh-modules/configuration-client.md
 - Questions?: https://discussions.citrix.com/forum/1385-citrix-developer-exchange/
