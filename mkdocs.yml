@@ -57,7 +57,7 @@ markdown_extensions:
 # Page tree
 nav:
 - Versions:
-    - Citrix Workspace Environment Management 4.7: https://developer-docs.citrix.com/projects/workspace-environment-management-sdk/en-us/4.7/
+    - Citrix Workspace Environment Management 4.7: https://developer-docs.citrix.com/projects/workspace-environment-management-sdk/en/4.7/
 - Citrix Workspace Environment Management SDK:
     - Overview: index.md
     - Understanding the admin model: understanding-the-sdk.md
