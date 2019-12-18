@@ -29,7 +29,7 @@ Enable verbose logging of the infrastructure service. Specify 'None' to leave th
 ---
 ## Type Commandlets.GetWemInfrastructureServiceConfiguration
 
-Gets the current infrastructure service configuration.
+Get the current infrastructure service configuration.
 
  The Get-WemInfrastructureServiceConfiguration cmdlet gets the current infrastructure service configuration from the local or remote infrastructure server machine. Remote machines can be either in the same domain, or can be in a multi-forest domain environment. 
 
@@ -39,47 +39,51 @@ Gets the current infrastructure service configuration.
 
  --To return the current configuration from a remote server in a multi forest Active Directory environment, you must specify the InfrastructureServer parameter (to identify the target machine) and the InfrastructureServerCredential parameter(to provide access credentials). 
 
-##### Example: Get the current configuration of the infrastructure service from the local machine: 
-
-
+##### Example: 
 
 ######  code
 
-```powershell
-    Get-WemInfrastructureServiceConfiguration
+```
+Get-WemInfrastructureServiceConfiguration
 ```
 
+Get the current configuration of the infrastructure service from the local machine.
 
 
 
 
-##### Example: Get the current configuration of the Infrastructure service from the remote machine in the same domain by using Windows authentication: 
 
 
 
-
+##### Example: 
 
 ######  code
 
-```powershell
-    Get-WemInfrastructureServiceConfiguration –InfrastructureServer “[Server]”
+```
+Get-WemInfrastructureServiceConfiguration –InfrastructureServer “[Server]”
 ```
 
+Get the current configuration of the infrastructure service from the remote machine in the same domain by using Windows authentication.
 
 
 
 
-##### Example: Get the current configuration of the infrastructure service from a remote machine in a multi-forest trusted environment. For authentication, this cmdlet uses the PSCredential type object: 
 
 
+
+##### Example: 
 
 ######  code
 
-```powershell
+```
     $passwd = ConvertTo-SecureString "[Password]" -AsPlainText -Force; 
     $cred = New-Object System.Management.Automation.PSCredential ("[Domain\UserName]", $passwd)
     Get-WemInfrastructureServiceConfiguration –InfrastructureServer “[Server]” –InfrastructureServiceAccountCredentials $cred
 ```
+
+Get the current configuration of the infrastructure service from the remote machine in multi-forest environments. For authentication, this cmdlet uses the PSCredential type object.
+
+
 
 
 
@@ -94,7 +98,7 @@ Set-WemInfrastructureServiceConfiguration
 ---
 ## Type Commandlets.SetWemInfrastructureServiceConfiguration
 
- Sets the infrastructure service configuration on a local or remote infrastructure server machine.
+ Set the infrastructure service configuration on a local or remote machine.
 
  The Set-WemInfrastructureServiceConfiguration cmdlet sets the infrastructure service configuration on a local or remote infrastructure server machine. Remote machines can be either in the same domain, or can be in a multi-forest domain environment. You can set the full configuration, or a subset of it. 
 
@@ -104,73 +108,79 @@ Set-WemInfrastructureServiceConfiguration
 
  --To set the current configuration to a remote server in a multi forest Active Directory environment, you must specify the InfrastructureServer parameter (to identify the target machine) and the InfrastructureServerCredential parameter(to provide access credentials). 
 
-##### Example: Set one single configuration option (DatabaseName) on the local machine: 
-
-
+##### Example: 
 
 ######  code
 
-```powershell
-    Set-WemInfrastructureServiceConfiguration -DatabaseName "WEM_DB";
+```
+Set-WemInfrastructureServiceConfiguration -DatabaseName "WEM_DB";
 ```
 
+Set a single configuration option (DatabaseName) on the local machine.
 
 
 
 
-##### Example: Set multiple configuration options (DatabaseName, MonitoringPort and EnableDebug) on the local machine:
 
 
+
+##### Example: 
 
 ######  code
 
-```powershell
+```
     $Enable = [Norskale.Utilities.Common.SwitchState]::Enable;
     Set-WemInfrastructureServiceConfiguration -DatabaseName "WEM_DB" -MonitoringPort 8084 -DebugMode $Enable;
 ```
 
+Set multiple configuration options (DatabaseName, MonitoringPort, and EnableDebug) on the local machine.
 
 
 
 
-##### Example: Set multiple configuration options (DatabaseName, MonitoringPort and EnableDebug) on the remote machine in the same domain (Windows authentication):
 
 
+
+##### Example: 
 
 ######  code
 
-```powershell
+```
     $Enable = [Norskale.Utilities.Common.SwitchState]::Enable;
     Set-WemInfrastructureServiceConfiguration -InfrastructureServer "[Server]" -DatabaseName "WEM_DB" -MonitoringPort 8084 -DebugMode $Enable;
 ```
 
+Set multiple configuration options (DatabaseName, MonitoringPort, and EnableDebug) on the remote machine in the same domain by using Windows authentication.
 
 
 
 
-##### Example: Set multiple configuration options (DatabaseName, MonitoringPort) on the remote machine (in multi-forest trust domain environments):
 
 
+
+##### Example: 
 
 ######  code
 
-```powershell
+```
     $passwd = ConvertTo-SecureString "[Password]" -AsPlainText -Force; 
     $cred = New-Object System.Management.Automation.PSCredential("[Domain]\[UserName]", $passwd);
     Set-WemInfrastructureServiceConfiguration -InfrastructureServer "[Server]" -InfrastructureServiceAccountCredential $cred -DatabaseName "WEM_DB" -MonitoringPort 8084;
 ```
 
+Set multiple configuration options (DatabaseName and MonitoringPort) on the remote machine in multi-forest domain environments.
 
 
 
 
-##### Example: Configure the infrastructure service via one configuration object. This approach also can be provided for configuring local and remote machine (in the same domain or in multi-forest trust domain environments): 
 
 
+
+##### Example: 
 
 ######  code
 
-```powershell
+```
     $Enable = [Norskale.Utilities.Common.SwitchState]::Enable;
     $Disable = [Norskale.Utilities.Common.SwitchState]::Disable;
     $config = New-Object Citrix.WEM.SDK.Configuration.InfrastructureService.SDKInfrastructureServiceConfiguration
@@ -183,9 +193,13 @@ Set-WemInfrastructureServiceConfiguration
     Set-WemInfrastructureServiceConfiguration -Configuration $config
 ```
 
+Configure the infrastructure service through a single configuration object. You can also use this approach to configure the local and remote machine (in the same domain or in multi-forest domain environments).
+
+ Warning! If you use a single configuration object, make sure that you configure all required properties of the configuration object. Otherwise, infrastructure service is configured with empty values by default.
 
 
- Warning! If you use single configuration object you have to keep in mind that you must configure all required properties in the configuration object. Other ways infrastructure service will be configured by default empty values. 
+
+
 
 
 
@@ -430,6 +444,42 @@ Configuration set to save the settings in.
 
 
 ---
+#### Property Commandlets.SetWemInfrastructureServiceConfiguration.BrokerMinimumWorkerThreads
+
+Minimum number of worker threads.
+
+
+
+
+
+---
+#### Property Commandlets.SetWemInfrastructureServiceConfiguration.BrokerMinimumCompletetionPortThreads
+
+Minimum number of asynchronous I/O threads.
+
+
+
+
+
+---
+#### Property Commandlets.SetWemInfrastructureServiceConfiguration.EnablePerformanceSettings
+
+Enable configuration of WCF performance settings. Specify 'None' to leave the current value unchanged. This is equivalent to omitting this parameter.
+
+
+
+
+
+---
+#### Property Commandlets.SetWemInfrastructureServiceConfiguration.CachedDataSyncPort
+
+Cache synchronization port for agent cache synchronization process to connect to the infrastructure service.
+
+
+
+
+
+---
 ## Type SDKInfrastructureServiceConfiguration
 
 SDK Infrastructure service Configuration object.
@@ -539,6 +589,42 @@ Cache synchronization port for agent cache synchronization process to connect to
 #### Property SDKInfrastructureServiceConfiguration.MonitoringPort
 
 WEM monitoring port.
+
+
+
+
+
+---
+#### Property SDKInfrastructureServiceConfiguration.CachedDataSyncPort
+
+Cached data synchronization port for agent cached data synchronization process to connect to the infrastructure service.
+
+
+
+
+
+---
+#### Property SDKInfrastructureServiceConfiguration.EnablePerformanceSettings
+
+Enable configuration of WCF performance settings. Specify 'None' to leave the current value unchanged. This is equivalent to omitting this parameter.
+
+
+
+
+
+---
+#### Property SDKInfrastructureServiceConfiguration.BrokerMinimumWorkerThreads
+
+Minimum number of worker threads.
+
+
+
+
+
+---
+#### Property SDKInfrastructureServiceConfiguration.BrokerMinimumCompletetionPortThreads
+
+Minimum number of asynchronous I/O threads.
 
 
 

@@ -58,10 +58,12 @@ markdown_extensions:
 nav:
 - Versions:
     - Citrix Workspace Environment Management 4.7: https://developer-docs.citrix.com/projects/workspace-environment-management-sdk/en-us/4.7/
-- Workspace Environment Management SDK:
+- Citrix Workspace Environment Management SDK:
     - Overview: index.md
     - Understanding the admin model: understanding-the-sdk.md
     - Getting started: getting-started-guide.md
 - Workspace Environment Management SDK PowerShell Modules:
     - WEM.database.configuration: wem-posh-modules/configuration-database.md
     - WEM.infrastructure.service.configuration: wem-posh-modules/configuration-infrastructure-service.md
+    - WEM.admin.client.configuration: wem-posh-modules/configuration-client.md
+
