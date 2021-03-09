@@ -1,6 +1,6 @@
-# Citrix Workspace Environment Management 1912 SDK 
+# Citrix Workspace Environment Management 2103 SDK
 
-Citrix Workspace Environment Management uses intelligent resource management and Profile Management technologies to deliver the best possible performance, desktop log on, and application response times for XenApp and XenDesktop deployments.
+Citrix Workspace Environment Management uses intelligent resource management and Profile Management technologies to deliver the best possible performance, desktop logon, and application response times for Citrix Virtual Apps and Desktops deployments.
 
 The following SDKs are provided to let you customize and manage various aspects of Workspace Environment Management:
 
