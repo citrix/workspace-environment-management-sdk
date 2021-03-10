@@ -69,7 +69,6 @@ plugins:
 nav:
 - Versions:
     - latest: https://developer-docs.citrix.com/projects/workspace-environment-management-sdk/en/latest/
-    - 1912: https://developer-docs.citrix.com/projects/workspace-environment-management-sdk/en/1912/ 
 - Workspace Environment Management SDK:
     - Overview: index.md
     - Understanding the admin model: understanding-the-sdk.md
