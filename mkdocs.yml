@@ -68,6 +68,7 @@ plugins:
 # Page tree
 nav:
 - Versions:
+    - Citrix Workspace Environment Management 1912: https://developer-docs.citrix.com/projects/workspace-environment-management-sdk/en/1912/
     - Citrix Workspace Environment Management 4.7: https://developer-docs.citrix.com/projects/workspace-environment-management-sdk/en/4.7/
 - Citrix Workspace Environment Management SDK:
     - Overview: index.md
