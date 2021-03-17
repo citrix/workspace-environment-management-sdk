@@ -300,15 +300,6 @@ Agent service port for agent to connect to the infrastructure server.
 
 
 ---
-#### Property Commandlets.SetWemInfrastructureServiceConfiguration.AgentSyncPort
-
-Cache synchronization port for agent cache synchronization process to connect to the infrastructure service.
-
-
-
-
-
----
 #### Property Commandlets.SetWemInfrastructureServiceConfiguration.MonitoringPort
 
 WEM monitoring port.
@@ -571,15 +562,6 @@ Administration port for administration console to connect to the infrastructure 
 #### Property SDKInfrastructureServiceConfiguration.AgentServicePort
 
 Agent service port for agent to connect to the infrastructure server.
-
-
-
-
-
----
-#### Property SDKInfrastructureServiceConfiguration.AgentSyncPort
-
-Cache synchronization port for agent cache synchronization process to connect to the infrastructure service.
 
 
 
